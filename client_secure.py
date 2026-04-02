@@ -17,7 +17,7 @@ class SecureClient:
         self.client = context.wrap_socket(raw_socket, server_hostname="localhost")
 
         # Change IP if using different system
-        self.client.connect(("127.0.0.1", 5000)) # mine is 10.75.232.163
+        self.client.connect(("127.0.0.1", 5000)) 
 
         threading.Thread(target=self.receive, daemon=True).start()
 
