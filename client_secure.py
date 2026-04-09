@@ -5,7 +5,7 @@ import time
 
 
 class SecureClient:
-    def __init__(self, callback):
+    def __init__(self, callback, host="127.0.0.1"):
         self.callback = callback
         self.start_time = None
 
@@ -16,8 +16,9 @@ class SecureClient:
         raw_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.client = context.wrap_socket(raw_socket, server_hostname="localhost")
 
-        # Change IP if using different system
-        self.client.connect(("127.0.0.1", 5000)) 
+        # Use the provided host IP
+        print(f"Connecting to {host}...")
+        self.client.connect((host, 5000)) 
 
         threading.Thread(target=self.receive, daemon=True).start()
 
